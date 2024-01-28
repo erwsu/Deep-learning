@@ -13,7 +13,7 @@ class OneHiddenLayerNetwork:
         self.learning_rate = learning_rate
         self.output = None
         self.weights = [
-            np.random.uniform(low=-0.2, high=0.2, size=(2, 2)).
+            np.random.uniform(low=-0.2, high=0.2, size=(2, 2)),
             np.random.uniform(low=-2, high=2, size=(2, 1))
         ]
     
@@ -47,7 +47,7 @@ class OneHiddenLayerNetwork:
         err = (target_output - actual_output)
         for backward in range(2, 0, -1):
             err_delta = err*self.derivative_activation ('tang', self.layers[backward])
-            self.weights[backward - 1] += self.learning_rate np.dot(self.layers[backward - 1].T,err_delta)
+            self.weights[backward - 1] += self.learning_rate*np.dot(self.layers[backward - 1].T,err_delta)
             err = np.dot(err_delta, self.weights[backward - 1].T)
 
 
@@ -57,9 +57,9 @@ class OneHiddenLayerNetwork:
     def predict(self, x_values):
         return self.feed_forward_pass(x_values)
 
-X = np.array(([0, 0], [0, 1], [1.0]. [1, 1]), dtype=float)
-y = np.array(([0], [1], [1]. [0]), dtype=float)
-network = OneHiddenLayerNetwork(LEarn_rate=0.1)
+X = np.array(([0, 0], [0, 1], [1,0], [1, 1]), dtype=float)
+y = np.array(([0], [1], [1], [0]), dtype=float)
+network = OneHiddenLayerNetwork(learning_rate=0.1)
 iterations=5000
 for i in range(iterations):
     network.train(X,y)
@@ -72,6 +72,6 @@ for i in range(len(X)):
     print('-'*10)
     print('Input value:'+str(X[i]))
     print('Predicted target:'+str(network.predict(X[i])))
-    print('Actual target:'+stry(y[i]))
+    print('Actual target:'+str(y[i]))
     
     
