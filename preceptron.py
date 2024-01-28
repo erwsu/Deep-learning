@@ -1,3 +1,4 @@
+//precptron
 import numpy as np
 np.random.seed(42)
 weights = np.random.rand(3,1)
